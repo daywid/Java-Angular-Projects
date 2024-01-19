@@ -9,10 +9,10 @@ import { CalculadoraService } from '../services';
 })
 export class CalculadoraComponent implements OnInit {
 
-  private numero1!: string;
-  private numero2!: string;
-  private resultado!: number;
-  private operacao!: string;
+  private numero1: string;
+  private numero2: string;
+  private resultado: number;
+  private operacao: string;
 
   constructor(private calculadoraService: CalculadoraService) { }
 
@@ -28,7 +28,7 @@ export class CalculadoraComponent implements OnInit {
   limpar(): void {
   	this.numero1 = '0';
   	this.numero2 = null;
-  	this.resultado = null; // FIX: Type 'null' is not assignable to type 'number
+  	this.resultado = null;
   	this.operacao = null;
   }
 
