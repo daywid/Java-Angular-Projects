@@ -6,14 +6,16 @@ import { FormsModule } from '@angular/forms';
 import { TarefaService } from './shared';
 import { ListarTarefaComponent } from './listar';
 import { CadastrarTarefaComponent } from './cadastrar';
-import { EditarTarefaComponent } from './editar/editar-tarefa.component'; //Serviços são importados como provider.
+import { EditarTarefaComponent } from './editar';
+import { TarefaConcluidaDirective } from './shared/tarefa-concluida.directive'; //Serviços são importados como provider.
 
 
 @NgModule({
   declarations: [
     ListarTarefaComponent,
     CadastrarTarefaComponent,
-    EditarTarefaComponent
+    EditarTarefaComponent,
+    TarefaConcluidaDirective
   ],
   imports: [
     CommonModule,

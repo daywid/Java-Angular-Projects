@@ -18,14 +18,14 @@ export class ListarTarefaComponent implements OnInit{
   }
 
   listarTodos(): Tarefa[] {
-    return this.tarefaService.listarTodos();
+    return this.listarTodos();
   }
 
   remover($event: any, tarefa: Tarefa):void {
     $event.preventDefault();
     if(confirm('deseja remover a tarefa " '+ tarefa.nome + '"?'))
     this.tarefaService.remover(tarefa.id);
-    this.tarefas = this.tarefaService.listarTodos();
+    this.tarefas = this.listarTodos();
   }
 
   alterarStatus(_t12: Tarefa) {
