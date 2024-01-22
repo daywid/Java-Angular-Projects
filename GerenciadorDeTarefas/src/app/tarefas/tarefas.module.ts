@@ -4,12 +4,16 @@ import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { TarefaService } from './shared';
-import { ListarTarefaComponent } from './listar'; //Serviços são importados como provider.
+import { ListarTarefaComponent } from './listar';
+import { CadastrarTarefaComponent } from './cadastrar';
+import { EditarTarefaComponent } from './editar/editar-tarefa.component'; //Serviços são importados como provider.
 
 
 @NgModule({
   declarations: [
-    ListarTarefaComponent
+    ListarTarefaComponent,
+    CadastrarTarefaComponent,
+    EditarTarefaComponent
   ],
   imports: [
     CommonModule,
