@@ -76,6 +76,10 @@ export class JogoDaVelhaService {
     }
 
   }
+
+  cpuJogar() {
+    throw new Error('Method not implemented.');
+  }
   fimJogo(posX: number, posY: number, tabuleiro: any, _jogador: number): any {
     throw new Error('Method not implemented.');
   }
