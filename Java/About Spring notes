@@ -1,7 +1,7 @@
 # About notes in Spring:
 
 @Entity:
-Specifies that the class is an entity. This annotation is applied to the entity class.
+Specifies that the class is an entity.
 --
 
 @Id:
@@ -12,7 +12,7 @@ Specifies the primary key of an entity.
 use to change/add info about a specific table about an entity.
 --
 
-!Remeber to set up database in "application.properties".
+Remeber to set up database in "application.properties"!.
 --
 
 spring.jpa.defer-datasource-initialization: true
@@ -20,7 +20,7 @@ spring.jpa.defer-datasource-initialization: true
 when this is true, spring boot delays the DataSource initialization.
 --
 
-"User" is a reserved word in H2 e some other databases, in order to prevent errors use a different word, example:
+"User" is a reserved word in H2 and some other databases, in order to prevent errors please use a different word! Example:
 
 @Entity
 @Table(name = "users")
