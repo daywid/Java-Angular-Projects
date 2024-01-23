@@ -1,5 +1,4 @@
 package com.daywid.studies.config;
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +15,28 @@ public class DataInitializer implements ApplicationListener<ContextRefreshedEven
     @Autowired
     UserRepository userRepository;
 
-
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
     
         List<User> users = userRepository.findAll();
 
         if(users.isEmpty()){
+           createUser("NomeTeste", "Emailteste@gmail.com");
+           createUser("NomeTeste2", "Emteste222@gmail.com");
+           createUser("NomeTest33", "Email333@gmail.com");
 
-
-            User user = new User();
-        
-            user.setEmail("teste@gmail.com");
-            user.setName("Nome teste");
-
-            userRepository.save(user);
         }
+        // userRepository.deleteById(2L);
+
+        User user = userRepository.findbyName("NomeTeste");
+        user.setName("testandoSET");
+        userRepository.save(user);
     }
-    
+
+    public void createUser(String name, String email){
+
+        User user = new User(name, email);
+        userRepository.save(user);
+    }
+
 }

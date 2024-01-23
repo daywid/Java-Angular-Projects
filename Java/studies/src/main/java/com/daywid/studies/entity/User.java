@@ -14,7 +14,15 @@ public class User {
     private String name;
     private String email;
 
-    @ManyToMany
+    public User(){}
+
+    public User(String name, String email){
+        super();
+        this.name = name;
+        this.email = email;
+    }
+
+    @ManyToMany //relacionamento de 1 pra muitos.
     private Set<Role> roles; 
 
     public Long getId() {

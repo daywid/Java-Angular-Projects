@@ -8,6 +8,10 @@ Specifies that the class is an entity. This annotation is applied to the entity 
 Specifies the primary key of an entity.
 --
 
+@Table:
+use to change/add info about a specific table about an entity.
+--
+
 !Remeber to set up database in "application.properties".
 --
 
@@ -16,7 +20,7 @@ spring.jpa.defer-datasource-initialization: true
 when this is true, spring boot delays the DataSource initialization.
 --
 
-"User" is a reserved word in H2 e some other databases, in order to prevent errors, use a different word, example:
+"User" is a reserved word in H2 e some other databases, in order to prevent errors use a different word, example:
 
 @Entity
 @Table(name = "users")
@@ -27,3 +31,6 @@ public class User{
 
 mysql -u root -p
 password
+--
+
+list of properties https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
