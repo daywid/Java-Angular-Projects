@@ -1,0 +1,28 @@
+# About notes in Spring:
+
+@Entity:
+Specifies that the class is an entity. This annotation is applied to the entity class.
+--
+
+@Id:
+Specifies the primary key of an entity.
+--
+
+!Remeber to set up database in "application.properties".
+--
+
+spring.jpa.defer-datasource-initialization: true
+
+when this is true, spring boot delays the DataSource initialization.
+--
+
+"User" is a reserved word in H2 e some other databases, in order to prevent errors, use a different word, example:
+
+@Entity
+@Table(name = "users")
+public class User{
+// ...
+}
+--
+
+
