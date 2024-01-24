@@ -2,23 +2,27 @@
 
 @Entity:
 Specifies that the class is an entity.
---
+--------
 
 @Id:
 Specifies the primary key of an entity.
---
+--------
 
 @Table:
 use to change/add info about a specific table about an entity.
---
+--------
+
+@Component:
+Use to indicate that the class is a component, and it will be created as a Bean.
+--------
 
 Remeber to set up database in "application.properties"!.
---
+--------
 
 spring.jpa.defer-datasource-initialization: true
 
 when this is true, spring boot delays the DataSource initialization.
---
+--------
 
 "User" is a reserved word in H2 and some other databases, in order to prevent errors please use a different word! Example:
 
@@ -27,10 +31,33 @@ when this is true, spring boot delays the DataSource initialization.
 public class User{
 // ...
 }
---
+--------
 
 mysql -u root -p
 password
---
+--------
 
 list of properties https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html
+--------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
