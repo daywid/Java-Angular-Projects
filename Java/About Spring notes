@@ -35,6 +35,13 @@ public class User{
 }
 --------
 
+Id implementation:
+
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO)
+private Long id;
+--------
+
 mysql -u root -p
 password
 --------
