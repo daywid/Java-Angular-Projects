@@ -9,7 +9,6 @@ import com.daywid.web2.entity.Role;
 import java.util.List;
 import com.daywid.web2.StatusRole;
 
-
 @Repository
 public interface RoleRepository extends JpaRepository<Role, Long>{
     

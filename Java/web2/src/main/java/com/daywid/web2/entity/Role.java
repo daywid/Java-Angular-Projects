@@ -1,5 +1,7 @@
 package com.daywid.web2.entity;
 
+import java.util.List;
+
 import com.daywid.web2.StatusRole;
 
 import jakarta.persistence.Entity;
@@ -21,11 +23,14 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private StatusRole status;
 
+    private List<Functionality> functionalities ;
+
     public Role(){}
 
-    public Role(String name, StatusRole status) {
+    public Role(String name, StatusRole status, List<Functionality> functionalities) {
         this.name = name;
         this.status = status;
+        this.functionalities = functionalities;
     }
 
     public Long getId() {
@@ -51,4 +56,13 @@ public class Role {
     public void setStatus(StatusRole status) {
         this.status = status;
     }
+
+    public List<Functionality> getFunctionalities() {
+        return functionalities;
+    }
+
+    public void setFunctionalities(List<Functionality> functionalities) {
+        this.functionalities = functionalities;
+    }
+
 }

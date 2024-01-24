@@ -1,14 +1,14 @@
 package com.daywid.web2;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
+import com.daywid.web2.entity.Functionality;
 import com.daywid.web2.entity.Role;
 import com.daywid.web2.entity.User;
 import com.daywid.web2.repository.RoleRepository;
@@ -18,36 +18,35 @@ import com.daywid.web2.repository.UserRepository;
 public class Initializer implements ApplicationListener<ContextRefreshedEvent>{
 
     @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
     private RoleRepository roleRepository;
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        
-        for(int i = 0; i < 1000; i++){
-            this.saveRole("Admin", StatusRole.ATIVO);
-        }
-
-        for(int i = 0; i < 1000; i++){
-            this.saveRole("Adsdadas", StatusRole.INATIVO);
-        }
-
-
-    PageRequest pageable = PageRequest.of(10, 10);
     
-    Page<Role> roles = this.roleRepository.findAll(pageable);
+        Functionality functionality = new Functionality();
+        functionality.setName("Add");
 
 
-    for(Role role: roles){
-        System.out.println(role.getName());
-    }
+        Role role = new Role("Admin", StatusRole.ATIVO, Arrays.asList(functionality));
+        Role role3 = new Role("Admin", StatusRole.ATIVO, Arrays.asList(functionality));
+        // this.roleRepository.save(role);
 
+        User user = new User();
 
-    }
+        user.setName("NomeTeste");
+        user.setEmail("EmailTest");
+        user.setRole(Arrays.asList(role));
 
-    public void saveRole(String name, StatusRole status){
-        Role role = new Role(name, status);
+        this.userRepository.save(user);
 
-        this.roleRepository.save(role);
+        List<User> users = this.userRepository.findAll();
+
+        for (User user2 : users) {
+            System.out.println(user.getRole());
+        }
 
     }
 
