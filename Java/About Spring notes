@@ -10,6 +10,8 @@ Specifies the primary key of an entity.
 
 @Table:
 use to change/add info about a specific table about an entity.
+
+@Table(name = "users")
 --------
 
 @Component:
