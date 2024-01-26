@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.daywid.Spring.Studies.data.vo.v1.PersonVO;
+import com.daywid.Spring.Studies.data.vo.v2.PersonVOV2;
 import com.daywid.Spring.Studies.exceptions.ResourceNotFoundException;
 import com.daywid.Spring.Studies.mapper.DozerMapper;
+import com.daywid.Spring.Studies.mapper.custom.PersonMapper;
 import com.daywid.Spring.Studies.models.Person;
 import com.daywid.Spring.Studies.repositories.PersonRepository;
 
@@ -20,6 +22,9 @@ public class PersonServices {
 
     @Autowired
     PersonRepository repository;
+
+    @Autowired
+    PersonMapper mapper;
 
     public PersonVO create(PersonVO person) {
 
@@ -69,16 +74,14 @@ public class PersonServices {
         repository.delete(entity);
     }
 
-    // private Person mockPerson(int i) {
-    
-    //     Person person = new Person();
-    //     person.setId(counter.incrementAndGet());
-    //     person.setFirstName("Person name " +i);
-    //     person.setLastName("Last name " +i);
-    //     person.setAddress("some address from brazil "+i);
-    //     person.setGender("male");
-    //     return person;
+  
+    public PersonVOV2 createV2(PersonVOV2 person) {
 
-    // }
+        logger.info("Creating one person");
+        var entity = mapper.convertVoToEntity(person);
+        var vo = mapper.convertEntityToVO(repository.save(entity));
+        return vo;
+    }
+
 
 }
