@@ -53,6 +53,13 @@
 			<version>8.0.28</version>
 		</dependency>
 
+				<!-- https://mvnrepository.com/artifact/com.github.dozermapper/dozer-core -->
+		<dependency>
+			<groupId>com.github.dozermapper</groupId>
+			<artifactId>dozer-core</artifactId>
+			<version>6.1.0</version>
+		</dependency>
+
 
 	</dependencies>
 

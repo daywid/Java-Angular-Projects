@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.daywid.Spring.Studies.data.vo.v1.PersonVO;
 import com.daywid.Spring.Studies.models.Person;
 import com.daywid.Spring.Studies.services.PersonServices;
 
@@ -24,23 +26,23 @@ public class PersonController {
     private PersonServices service;
     //private PersonServices service = new PersonServices();
 
-    @PostMapping( produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Person create(@RequestBody Person person){
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+	public PersonVO create(@RequestBody PersonVO person){
         return service.create(person);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Person> findAll(){
+	public List<PersonVO> findAll(){
         return service.findAll();
     }
 
    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person findById(@PathVariable(value = "id") Long id){
+	public PersonVO findById(@PathVariable(value = "id") Long id){
         return service.findById(id);
     }
 
     @PutMapping(value = "/update/{id}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public Person update(@RequestBody Person person){
+	public PersonVO update(@RequestBody PersonVO person){
         return service.update(person);
     }
 

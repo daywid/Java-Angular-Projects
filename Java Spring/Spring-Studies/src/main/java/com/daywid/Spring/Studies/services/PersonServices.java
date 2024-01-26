@@ -6,7 +6,9 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.daywid.Spring.Studies.data.vo.v1.PersonVO;
 import com.daywid.Spring.Studies.exceptions.ResourceNotFoundException;
+import com.daywid.Spring.Studies.mapper.DozerMapper;
 import com.daywid.Spring.Studies.models.Person;
 import com.daywid.Spring.Studies.repositories.PersonRepository;
 
@@ -19,14 +21,15 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
-    public Person create(Person person) {
+    public PersonVO create(PersonVO person) {
 
         logger.info("Creating one person");
-        //database access
-        return repository.save(person);
+        var entity = DozerMapper.parseObject(person, Person.class);
+        var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        return vo;
     }
 
-    public Person update(Person person) {
+    public PersonVO update(PersonVO person) {
 
         logger.info("Updating one person");
         //database access
@@ -38,24 +41,22 @@ public class PersonServices {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return repository.save(person);
+        var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
+        return vo;
     }
     
-    public List<Person> findAll(){
+    public List<PersonVO> findAll(){
         
         logger.info("Finding all people");
         //database access
-        return repository.findAll();
+        return DozerMapper.parseListObjects(repository.findAll(), PersonVO.class);
     }
 
-    public Person findById(Long id){
-        
-        logger.info("Finding one person");
-        
-        Person person = new Person();
-       //database access
-        return repository.findById(id)
+    public PersonVO findById(Long id){
+    
+       var entity = repository.findById(id)
             .orElseThrow(() -> new ResourceNotFoundException("No records for this ID") );
+        return DozerMapper.parseObject(entity, PersonVO.class);
     }
 
     public void delete(Long id) {
