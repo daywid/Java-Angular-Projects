@@ -1,8 +1,9 @@
 package com.daywid.Spring.Studies.data.vo.v1;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+// Imports for JSON Serialization.
+// import com.fasterxml.jackson.annotation.JsonIgnore;
+// import com.fasterxml.jackson.annotation.JsonProperty;
+// import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 //@JsonPropertyOrder({"id", "firstName", "lastName", "address", "gender"}) => changes JSON order
 public class PersonVO {
