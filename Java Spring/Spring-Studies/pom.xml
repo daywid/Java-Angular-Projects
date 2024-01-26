@@ -52,6 +52,31 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.28</version>
 		</dependency>
+				<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-core -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+			<version>10.6.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-maven-plugin -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-maven-plugin</artifactId>
+			<version>10.6.0</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-mysql</artifactId>
+			<version>10.6.0</version>
+		</dependency>
+
+		
+
+
+
 
 				<!-- https://mvnrepository.com/artifact/com.github.dozermapper/dozer-core -->
 		<dependency>
@@ -59,6 +84,7 @@
 			<artifactId>dozer-core</artifactId>
 			<version>6.1.0</version>
 		</dependency>
+		
 
 
 	</dependencies>
