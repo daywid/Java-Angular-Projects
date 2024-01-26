@@ -1,5 +1,10 @@
 package com.daywid.Spring.Studies.data.vo.v1;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+//@JsonPropertyOrder({"id", "firstName", "lastName", "address", "gender"}) => changes JSON order
 public class PersonVO {
     
      
@@ -7,12 +12,14 @@ public class PersonVO {
 
     private Long id;
 
+    //@JsonProperty("first_name") => changes JSON order
     private String firstName;
 
     private String lastName;
 
     private String address;
 
+    //@JsonIgnore //omits an attribute in the JSON
     private String gender;
 
     public static long getSerialversionuid() {
