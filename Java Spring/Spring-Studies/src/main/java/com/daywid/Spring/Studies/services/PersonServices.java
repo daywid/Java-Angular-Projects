@@ -10,6 +10,7 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 import com.daywid.Spring.Studies.controllers.PersonController;
 import com.daywid.Spring.Studies.data.vo.v1.PersonVO;
+import com.daywid.Spring.Studies.exceptions.RequiredObjectIsNullException;
 import com.daywid.Spring.Studies.exceptions.ResourceNotFoundException;
 import com.daywid.Spring.Studies.mapper.DozerMapper;
 import com.daywid.Spring.Studies.models.Person;
@@ -47,7 +48,7 @@ public class PersonServices {
 	
 	public PersonVO create(PersonVO person) {
 
-		// if (person == null) throw new RequiredObjectIsNullException();
+		 if (person == null) throw new RequiredObjectIsNullException();
 		
 		logger.info("Creating one person!");
 		var entity = DozerMapper.parseObject(person, Person.class);
@@ -58,7 +59,7 @@ public class PersonServices {
 	
 	public PersonVO update(PersonVO person) {
 
-		// if (person == null) throw new RequiredObjectIsNullException();
+		 if (person == null) throw new RequiredObjectIsNullException();
 		
 		logger.info("Updating one person!");
 		
