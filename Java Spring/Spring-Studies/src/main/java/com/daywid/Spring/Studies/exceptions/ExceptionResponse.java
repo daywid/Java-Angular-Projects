@@ -72,5 +72,9 @@ public class ExceptionResponse implements Serializable{
         return true;
     }
 
+    public static long getSeriaversionuid() {
+        return seriaVersionUID;
+    }
+
     
 }

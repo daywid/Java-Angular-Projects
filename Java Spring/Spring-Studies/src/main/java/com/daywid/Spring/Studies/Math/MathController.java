@@ -1,6 +1,6 @@
 package com.daywid.Spring.Studies.Math;
 
-import java.util.concurrent.atomic.AtomicLong;
+// import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +11,7 @@ import com.daywid.Spring.Studies.exceptions.UnsupportedMathOperationException;
 @RestController
 public class MathController {
 
-    private final AtomicLong counter  = new AtomicLong();
+    // private final AtomicLong counter  = new AtomicLong();
 
     private SimpleMath math = new SimpleMath();
 

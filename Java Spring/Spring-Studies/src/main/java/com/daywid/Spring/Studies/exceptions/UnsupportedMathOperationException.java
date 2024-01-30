@@ -12,4 +12,8 @@ public class UnsupportedMathOperationException extends RuntimeException{
         super(ex);
     }
 
+    public static long getSeriaversionuid() {
+        return seriaVersionUID;
+    }
+    
 }
