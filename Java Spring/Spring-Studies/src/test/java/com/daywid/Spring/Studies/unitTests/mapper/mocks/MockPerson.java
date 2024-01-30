@@ -7,7 +7,6 @@ import com.daywid.Spring.Studies.models.Person;
 
 public class MockPerson {
 
-
     public Person mockEntity() {
         return mockEntity(0);
     }

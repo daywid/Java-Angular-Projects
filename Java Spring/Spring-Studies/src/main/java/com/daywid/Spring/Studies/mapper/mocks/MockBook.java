@@ -8,7 +8,6 @@ import com.daywid.Spring.Studies.data.vo.v1.BookVO;
 import com.daywid.Spring.Studies.models.Book;
 
 
-
 public class MockBook {
 
 
