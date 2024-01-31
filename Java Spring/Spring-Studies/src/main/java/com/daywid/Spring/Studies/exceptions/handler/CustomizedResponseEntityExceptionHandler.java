@@ -11,6 +11,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import com.daywid.Spring.Studies.exceptions.ExceptionResponse;
+import com.daywid.Spring.Studies.exceptions.InvalidJwtAuthenticationException;
 import com.daywid.Spring.Studies.exceptions.UnsupportedMathOperationException;
 
 @ControllerAdvice
@@ -42,4 +43,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         
     }
     
+    @ExceptionHandler(InvalidJwtAuthenticationException.class)
+    public final ResponseEntity<ExceptionResponse> handleInvalidAuthenticationExceptions(Exception ex, WebRequest request){
+        
+        ExceptionResponse exceptionResponse = new ExceptionResponse(
+            new Date(),
+            ex.getMessage(), 
+            request.getDescription(false));
+
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.FORBIDDEN);
+        
+    }
 }
