@@ -1,9 +1,8 @@
-package com.daywid.Spring.Studies.securityJwt;
+package com.daywid.Spring.Studies.security.Jwt;
 
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

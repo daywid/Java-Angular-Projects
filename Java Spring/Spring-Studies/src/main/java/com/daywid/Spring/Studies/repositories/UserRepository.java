@@ -8,6 +8,6 @@ import com.daywid.Spring.Studies.models.User;
 
 public interface UserRepository extends JpaRepository<User, Long>{
     
-    @Query("SELECT u FROM User WHERE u.userName =:userName")
+    @Query("SELECT u FROM User u WHERE u.userName =:userName")
     User findByUsername(@Param("userName") String username);
 }

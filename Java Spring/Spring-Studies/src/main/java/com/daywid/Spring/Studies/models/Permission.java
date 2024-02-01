@@ -23,8 +23,6 @@ public class Permission implements Serializable{
     @Column(nullable = false, length = 180)
     private String description;
 
-    
-
     public Permission() {}
 
     public String getAuthority(){
