@@ -135,6 +135,6 @@ public class SecurityConfig {
                 .apply(new JwtConfigurer(tokenProvider))
                 .and()
                 .build();
- 
+
     }
 }
