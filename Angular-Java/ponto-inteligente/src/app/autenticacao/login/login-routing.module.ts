@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './components/login/login.component';
-import { LogarComponent } from './components';
+import { LogarComponent, LoginComponent } from './components';
 import { RouterModule, Routes } from '@angular/router';
 
 export const LoginRoutes: Routes = [
@@ -14,11 +13,11 @@ export const LoginRoutes: Routes = [
 
 
 @NgModule({
-  declarations: [
-    LoginComponent
-  ],
+  // declarations: [
+  //   LoginComponent
+  // ],
   imports: [
-    CommonModule,
+    // CommonModule,
     RouterModule.forChild(LoginRoutes)
   ],
   exports: [
