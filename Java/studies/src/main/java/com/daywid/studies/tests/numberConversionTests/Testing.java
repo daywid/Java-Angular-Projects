@@ -1,4 +1,4 @@
-package com.daywid.studies.tests;
+package com.daywid.studies.tests.numberConversionTests;
 import java.util.Scanner;
 //testing codeium extension to do simple number conversion and check if it is a number
 
@@ -10,7 +10,8 @@ public class Testing
         Scanner scanner = new Scanner(System.in);
         System.out.println("type a number:");
         String numberString = scanner.nextLine();
-        Validations validations = new Validations();
-        validations.validation(numberString);
+        NumberValidator validator = new NumberValidator();
+        validator.validateNumber(numberString);
     }
 }
+ 
