@@ -14,6 +14,10 @@ import com.daywid.Spring.Studies.services.AuthServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/*
+ * Controller for authentication endpoints.
+ */
+
 @Tag(name = "Authentication Endpoint")
 @RestController
 @RequestMapping("/auth")
@@ -21,6 +25,13 @@ public class AuthController {
     
     @Autowired
     AuthServices authServices;
+
+    /*
+     * Authenticas a user and returns a token.
+     * 
+     * @param data The user's account credentials.
+     * @return ResponseEntity containing the token or an error message.
+     */
 
     @SuppressWarnings("rawtypes")
     @Operation(summary = "Authenticates a user and returns a token")
@@ -36,6 +47,13 @@ public class AuthController {
             return token;
         }
     }
+
+    /*
+     * Checks if the data parameter is null or empty.
+     * 
+     * @param data The user's account credentials.
+     * @return true if the data parameter is null or empty, false otherwise.
+     */
 
     private boolean checkIfParamIsNotNull(AccountCredentialsVO data){
         return data == null || data.getUsername() == null || data.getUsername().isBlank() ||

@@ -1,3 +1,5 @@
+package com.daywid.Spring.Studies.config;
+
 /*
  * DEPRECATED VERSION OF SECURITY CONFIG!
  * 
@@ -63,8 +65,7 @@
 // 				.and()
 // 				.apply(new JwtConfigurer(tokenProvider));
 // 	}
-// }
-package com.daywid.Spring.Studies.config;
+// }package com.daywid.Spring.Studies.config;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -76,6 +77,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
@@ -87,13 +89,17 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.daywid.Spring.Studies.security.Jwt.JwtConfigurer;
 import com.daywid.Spring.Studies.security.Jwt.JwtTokenProvider;
 
+// This class defines the security configuration for the application.
+// It is a deprecated version and should be replaced with an updated version.
+
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig {
+public class SecurityConfig extends WebSecurityConfiguration {
 
 	@Autowired
 	private JwtTokenProvider tokenProvider;
 	
+	// Defines the password encoder bean for the application
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		Map<String, PasswordEncoder> encoders = new HashMap<>();
@@ -105,6 +111,7 @@ public class SecurityConfig {
 		return passwordEncoder;
 	}
 	
+    // Defines the authentication manager bean for the application
     @Bean
     AuthenticationManager authenticationManagerBean(
     		AuthenticationConfiguration authenticationConfiguration)
@@ -112,6 +119,7 @@ public class SecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    // Defines the security filter chain bean for the application
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http

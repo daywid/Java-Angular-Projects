@@ -24,6 +24,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/*
+ * This class represents the REST controller for managing book entities.
+ */
+
 @RestController()
 @RequestMapping("/api/book/v1")
 @Tag(name = "Book", description = "Endpoints for Managing Book")
@@ -31,7 +35,10 @@ public class BookController {
 
     @Autowired
 	private BookServices service;
-
+	/*
+	 * Retrieves all books.
+	 * @return List of BookVO objects.
+	 */
     @GetMapping(
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
 	@Operation(summary = "Finds all Books", description = "Finds all Books",
@@ -53,7 +60,11 @@ public class BookController {
 	public List<BookVO> findAll() {
 		return service.findAll();
 	}
-
+	/*
+	 * Retrieves a book by its id.
+	 * @param id The id of the book.
+	 * @return BookVO object.
+	 */
     @GetMapping(value = "/{id}",
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  })
 	@Operation(summary = "Finds a Book", description = "Finds a Book",
@@ -72,7 +83,11 @@ public class BookController {
 	public BookVO findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
 	}
-
+	/*
+	 * Creates a new book.
+	 * @param book The book to be created.
+	 * @return BookVO object.
+	 */
     @PostMapping(
 		consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  },
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  })
@@ -91,7 +106,11 @@ public class BookController {
 	public BookVO create(@RequestBody BookVO book) {
 		return service.create(book);
 	}
-
+	/*
+	 * Updates a book.
+	 * @param book The book to be updated.
+	 * @return BookVO object.
+	 */
     @PutMapping(
 		consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  },
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  })
@@ -111,7 +130,11 @@ public class BookController {
 	public BookVO update(@RequestBody BookVO book) {
 		return service.update(book);
 	}
-
+	/*
+	 * Deletes a book by its id.
+	 * @param id The id of the book.
+	 * @return ResponseEntity
+	 */
     @DeleteMapping(value = "/{id}")
 	@Operation(summary = "Deletes a Book",
 		description = "Deletes a Book by passing in a JSON, XML or YML representation of the Book!",

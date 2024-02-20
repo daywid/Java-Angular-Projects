@@ -9,7 +9,10 @@ import io.swagger.v3.oas.models.info.License;
 
 @Configuration
 public class OpenApiConfig {
-    
+    /*
+     * Custom OpenAPI bean confiiguration
+     * @Return OpenAPI object
+     */
     @Bean
     public OpenAPI customOpenAPI(){
         return new OpenAPI()

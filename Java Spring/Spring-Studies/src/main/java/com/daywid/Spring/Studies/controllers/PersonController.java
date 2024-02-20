@@ -27,7 +27,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 
 //@CrossOrigin
 
-
+/*
+ * Controller for handling requests related to Person entities.
+ */
 @RestController
 @RequestMapping("/api/person/v1")
 public class PersonController {
@@ -35,6 +37,11 @@ public class PersonController {
 	@Autowired
 	private PersonServices service;
 	
+	/*
+	 * Retrieves all person entities
+	 * 
+	 * @Return List of PersonVO representing all people.
+	 */
 	@GetMapping(
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
 	@Operation(summary = "Finds all People", description = "Finds all People",
@@ -57,6 +64,12 @@ public class PersonController {
 		return service.findAll();
 	}
 	
+	/*
+	 * Retrieves a person by its id.
+	 * 
+	 * @param id The id of the person.
+	 * @return PersonVO representing the person with the given ID.
+	 */
 	@GetMapping(value = "/{id}",
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  })
 	@Operation(summary = "Finds a Person", description = "Finds a Person",
@@ -78,6 +91,12 @@ public class PersonController {
 		return service.findById(id);
 	}
 	
+	/*
+	 * Creates a new Person entity
+	 * 
+	 * @param person The PersonVO to be created.
+	 * @return PersonVO representing the created person.
+	 */
 	@CrossOrigin(origins = {"http://localhost:8080","https://erudio.com.br"})
 	@PostMapping(
 		consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  },
@@ -98,6 +117,12 @@ public class PersonController {
 		return service.create(person);
 	}
 	
+	/*
+	 * Updates a Person entity
+	 * 
+	 * @param person The PersonVO to be updated.
+	 * @return PersonVO representing the updated person.
+	 */
 	@PutMapping(
 		consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  },
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  })
@@ -118,7 +143,12 @@ public class PersonController {
 		return service.update(person);
 	}
 	
-	
+	 /*
+	 * Deletes a Person entity
+	 * 
+	 * @param id The id of the Person to be deleted.
+	 * @return ResponseEntity with no content. 
+	 */	
 	@DeleteMapping(value = "/{id}")
 	@Operation(summary = "Deletes a Person",
 		description = "Deletes a Person by passing in a JSON, XML or YML representation of the person!",

@@ -7,7 +7,9 @@ import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
+/**
+ * This class represents a Person Value Object.
+ */
 @JsonPropertyOrder({"id", "firstName", "lastName", "address", "gender"})
 public class PersonVO extends RepresentationModel<PersonVO> implements Serializable {
 

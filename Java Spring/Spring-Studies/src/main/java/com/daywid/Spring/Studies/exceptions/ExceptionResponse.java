@@ -3,6 +3,9 @@ package com.daywid.Spring.Studies.exceptions;
 import java.io.Serializable;
 import java.util.Date;
 
+/*
+ * Represents a custom response for exceptions
+ */
 public class ExceptionResponse implements Serializable{
     
     private static final long seriaVersionUID = 1L;
@@ -11,6 +14,12 @@ public class ExceptionResponse implements Serializable{
     private String message;
     private String details;
 
+    /*
+     * Constructor for  ExceptionResponse 
+     * @param timestamp the timestamp of the exception
+     * @param message the exception message
+     * @param details additional details about the exception
+     */
     public ExceptionResponse(Date timestamp, String message, String details) {
         this.timestamp = timestamp;
         this.message = message;

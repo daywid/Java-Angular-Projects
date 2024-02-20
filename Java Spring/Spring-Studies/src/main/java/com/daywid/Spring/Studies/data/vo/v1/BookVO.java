@@ -10,6 +10,9 @@ import com.daywid.Spring.Studies.models.Book;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+/**
+ * Represents a Book View Object.
+ */
 @JsonPropertyOrder({"id", "author", "launchDate", "price", "title"})
 public class BookVO extends RepresentationModel<BookVO> implements Serializable {
 
