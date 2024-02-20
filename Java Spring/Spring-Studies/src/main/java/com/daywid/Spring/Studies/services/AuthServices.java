@@ -13,8 +13,12 @@ import com.daywid.Spring.Studies.data.vo.v1.security.TokenVO;
 import com.daywid.Spring.Studies.repositories.UserRepository;
 import com.daywid.Spring.Studies.security.Jwt.JwtTokenProvider;
 
+/*
+ * This class provides authentication services for the application.
+ */
 @Service
-public class AuthServices {
+public class AuthServices 
+{
     
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -25,10 +29,16 @@ public class AuthServices {
     @Autowired
     private UserRepository repository;
 
+    /*
+     * Handles user sign in.
+     * @param data The account credentials.
+     * @return ResponseEntity containing the token response.
+     */
     @SuppressWarnings("rawtypes")
-    public ResponseEntity signIn(AccountCredentialsVO data){
-
-        try {
+    public ResponseEntity signIn(AccountCredentialsVO data)
+    {
+        try 
+        {
             var username =  data.getUsername();
             var password = data.getPassword();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
@@ -39,15 +49,14 @@ public class AuthServices {
 
         if (user != null) {
             tokenResponse = tokenProvider.createAccessToken(username, user.getRoles());
-        }else{
+        }
+        else
+        {
             throw new UsernameNotFoundException("Username: " + username + "not found");
         }
-
         return ResponseEntity.ok(tokenResponse);
         } catch (Exception e) {
             throw new BadCredentialsException("Invalid username/password supplied");
         }
-
     }
-
 }
