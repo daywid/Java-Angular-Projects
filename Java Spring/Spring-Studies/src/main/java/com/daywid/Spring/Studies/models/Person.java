@@ -26,8 +26,12 @@ public class Person implements Serializable{
 
     @Column(nullable = false, length = 80)
     private String address;
+
     @Column(nullable = false, length = 6)
     private String gender;
+
+    @Column(nullable = false)
+    private boolean enabled;
 
     public Person(){}
 
@@ -122,6 +126,14 @@ public class Person implements Serializable{
         } else if (!gender.equals(other.gender))
             return false;
         return true;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
 }
