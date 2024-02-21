@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder.Secret
  * This is the main class that starts the Spring application
  */
 @SpringBootApplication
+@ComponentScan("com.daywid.Spring.Studies.config")
 public class Startup {
 
     public static void main(String[] args) {

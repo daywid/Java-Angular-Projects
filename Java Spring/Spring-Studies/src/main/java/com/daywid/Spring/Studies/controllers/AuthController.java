@@ -21,43 +21,40 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Authentication Endpoint")
 @RestController
 @RequestMapping("/auth")
-public class AuthController {
-    
+public class AuthController 
+{    
     @Autowired
     AuthServices authServices;
-
     /*
      * Authenticas a user and returns a token.
      * 
      * @param data The user's account credentials.
      * @return ResponseEntity containing the token or an error message.
      */
-
     @SuppressWarnings("rawtypes")
     @Operation(summary = "Authenticates a user and returns a token")
     @PostMapping(value = "/signin")
-    public ResponseEntity signin(@RequestBody AccountCredentialsVO data){
-        
+    public ResponseEntity signin(@RequestBody AccountCredentialsVO data)
+    {    
         if(checkIfParamIsNotNull(data)) return ResponseEntity.status(HttpStatus.FORBIDDEN)
         .body("Invalid client request!");
         
         var token =  authServices.signIn(data);
 
-        if(token == null) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");      {
+        if(token == null) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");      
+        {
             return token;
         }
     }
-
     /*
      * Checks if the data parameter is null or empty.
      * 
      * @param data The user's account credentials.
      * @return true if the data parameter is null or empty, false otherwise.
      */
-
-    private boolean checkIfParamIsNotNull(AccountCredentialsVO data){
+    private boolean checkIfParamIsNotNull(AccountCredentialsVO data)
+    {
         return data == null || data.getUsername() == null || data.getUsername().isBlank() ||
         data.getPassword().isBlank();
     }
-
 }

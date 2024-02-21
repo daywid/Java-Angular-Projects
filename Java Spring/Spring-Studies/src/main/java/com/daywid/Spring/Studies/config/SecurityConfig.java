@@ -67,6 +67,117 @@ package com.daywid.Spring.Studies.config;
 // 	}
 // }package com.daywid.Spring.Studies.config;
 
+// import java.util.HashMap;
+// import java.util.Map;
+
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.context.annotation.Bean;
+// import org.springframework.context.annotation.Configuration;
+// import org.springframework.security.authentication.AuthenticationManager;
+// import org.springframework.security.config.Customizer;
+// import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+// import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+// import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+// import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+// import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+// import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
+// import org.springframework.security.config.http.SessionCreationPolicy;
+// import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
+// import org.springframework.security.crypto.password.PasswordEncoder;
+// import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+// import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder.SecretKeyFactoryAlgorithm;
+// import org.springframework.security.web.SecurityFilterChain;
+
+// import com.daywid.Spring.Studies.security.Jwt.JwtConfigurer;
+// import com.daywid.Spring.Studies.security.Jwt.JwtTokenProvider;
+
+// // This class defines the security configuration for the application.
+// // It is a deprecated version and should be replaced with an updated version.
+
+// @EnableWebSecurity
+// @Configuration
+// public class SecurityConfig
+// {
+
+// 	@Autowired
+//     private JwtTokenProvider tokenProvider;
+	
+// 	// Defines the password encoder bean for the application
+// 	@Bean
+// 	PasswordEncoder passwordEncoder() 
+//     {
+// 		Map<String, PasswordEncoder> encoders = new HashMap<>();
+				
+// 		Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder("", 8, 185000, SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
+// 		encoders.put("pbkdf2", pbkdf2Encoder);
+// 		DelegatingPasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("pbkdf2", encoders);
+// 		passwordEncoder.setDefaultPasswordEncoderForMatches(pbkdf2Encoder);
+// 		return passwordEncoder;
+// 	}
+
+//     // Defines the authentication manager bean for the application
+//     @Bean
+//     public AuthenticationManager authenticationManagerBean(AuthenticationConfiguration authenticationConfiguration) throws Exception 
+//     {
+//     return authenticationConfiguration.getAuthenticationManager();
+//     }
+
+//     // Defines the security filter chain bean for the application
+   
+//     @Bean
+//     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+//     return http
+//         .httpBasic(basic -> basic.disable())
+//         .csrf(AbstractHttpConfigurer::disable)
+//         .sessionManagement(
+//                 session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//         .authorizeHttpRequests(
+//                 authorizeHttpRequests -> authorizeHttpRequests
+//                         .requestMatchers(
+//                                 "/auth/signin",
+//                                 "/auth/refresh/**",
+//                                 "/swagger-ui/**",
+//                                 "/v3/api-docs/**"
+//                         ).permitAll()
+//                         .requestMatchers("/api/**").authenticated()
+//                         .requestMatchers("/users").denyAll()
+//         )
+//         .cors(withDefaults())
+//         .apply(new JwtConfigurer(tokenProvider))
+//         .and()
+//         .build();
+// }
+
+//     private Customizer<CorsConfigurer<HttpSecurity>> withDefaults() {
+//         // TODO Auto-generated method stub
+//         throw new UnsupportedOperationException("Unimplemented method 'withDefaults'");
+//     }
+
+    // @Bean
+    // SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    //     return http
+    //             .httpBasic().disable()
+    //             .csrf(AbstractHttpConfigurer::disable)
+    //             .sessionManagement(
+    //         		session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+    //             .authorizeHttpRequests(
+    //                 authorizeHttpRequests -> authorizeHttpRequests
+    //                     .requestMatchers(
+	// 						"/auth/signin",
+	// 						"/auth/refresh/**",
+    //                 		"/swagger-ui/**",
+    //                 		"/v3/api-docs/**"
+    //             		).permitAll()
+    //                     .requestMatchers("/api/**").authenticated()
+    //                     .requestMatchers("/users").denyAll()
+    //             )
+    //             .cors()
+    //             .and()
+    //             .apply(new JwtConfigurer(tokenProvider))
+    //             .and()
+    //             .build();
+    // }
+// }
 import java.util.HashMap;
 import java.util.Map;
 
@@ -77,41 +188,34 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder.SecretKeyFactoryAlgorithm;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.daywid.Spring.Studies.security.Jwt.JwtConfigurer;
+import com.daywid.Spring.Studies.security.Jwt.JwtTokenFilter;
 import com.daywid.Spring.Studies.security.Jwt.JwtTokenProvider;
-
-// This class defines the security configuration for the application.
-// It is a deprecated version and should be replaced with an updated version.
 
 @EnableWebSecurity
 @Configuration
-public class SecurityConfig extends WebSecurityConfiguration {
+public class SecurityConfig {
 
-	@Autowired
-	private JwtTokenProvider tokenProvider;
-	
-	// Defines the password encoder bean for the application
+
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		Map<String, PasswordEncoder> encoders = new HashMap<>();
 				
-		Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder("", 8, 185000, SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
+		Pbkdf2PasswordEncoder pbkdf2Encoder = new Pbkdf2PasswordEncoder("", 8, 185000,
+                SecretKeyFactoryAlgorithm.PBKDF2WithHmacSHA256);
 		encoders.put("pbkdf2", pbkdf2Encoder);
 		DelegatingPasswordEncoder passwordEncoder = new DelegatingPasswordEncoder("pbkdf2", encoders);
 		passwordEncoder.setDefaultPasswordEncoderForMatches(pbkdf2Encoder);
 		return passwordEncoder;
 	}
 	
-    // Defines the authentication manager bean for the application
     @Bean
     AuthenticationManager authenticationManagerBean(
     		AuthenticationConfiguration authenticationConfiguration)
@@ -119,12 +223,18 @@ public class SecurityConfig extends WebSecurityConfiguration {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-    // Defines the security filter chain bean for the application
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        
+        JwtTokenProvider tokenProvider = new JwtTokenProvider();
+
+        JwtTokenFilter customFilter = new JwtTokenFilter(tokenProvider);
+        
+        //@formatter:off
         return http
-                .httpBasic().disable()
-                .csrf(AbstractHttpConfigurer::disable)
+            .httpBasic(basic -> basic.disable())
+            .csrf(csrf -> csrf.disable())
+            .addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class)
                 .sessionManagement(
             		session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
@@ -138,11 +248,8 @@ public class SecurityConfig extends WebSecurityConfiguration {
                         .requestMatchers("/api/**").authenticated()
                         .requestMatchers("/users").denyAll()
                 )
-                .cors()
-                .and()
-                .apply(new JwtConfigurer(tokenProvider))
-                .and()
+            .cors(cors -> {})
                 .build();
-
+        //@formatter:on
     }
 }
