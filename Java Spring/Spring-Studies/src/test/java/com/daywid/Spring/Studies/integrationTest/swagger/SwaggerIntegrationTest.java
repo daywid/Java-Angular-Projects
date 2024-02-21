@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.daywid.Spring.Studies.configs.TestConfigs;
-import com.daywid.Spring.Studies.integrationTest.AbstractIntegrationTest;
+import com.daywid.Spring.Studies.integrationTest.testcontainers.AbstractIntegrationTest;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class SwaggerIntegrationTest extends AbstractIntegrationTest{

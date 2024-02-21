@@ -28,7 +28,6 @@ public class AuthServices
 
     @Autowired
     private UserRepository repository;
-
     /*
      * Handles user sign in.
      * @param data The account credentials.

@@ -1,4 +1,4 @@
-package com.daywid.Spring.Studies.integrationTest;
+package com.daywid.Spring.Studies.integrationTest.testcontainers;
 
 import java.util.Map;
 import java.util.stream.Stream;
