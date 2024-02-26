@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -25,6 +26,7 @@ import com.daywid.Spring.Studies.security.Jwt.JwtTokenProvider;
  */
 @EnableWebSecurity
 @Configuration
+@EnableMethodSecurity
 public class SecurityConfig 
 {
     /**
@@ -91,5 +93,34 @@ public class SecurityConfig
             .cors(cors -> {})
                 .build();
         //@formatter:on
+
+
+
+
+
+
+
+
+        //@formatter:off
+        // return http
+        //     .httpBasic(basic -> basic.disable())
+        //     .csrf(csrf -> csrf.disable())
+        //     .addFilterBefore(customFilter, UsernamePasswordAuthenticationFilter.class)
+        //         .sessionManagement(
+        //     		session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        //         .authorizeHttpRequests(
+        //             authorizeHttpRequests -> authorizeHttpRequests
+        //                 .requestMatchers(
+		// 					"/auth/signin",
+		// 					"/auth/refresh/**",
+        //             		"/swagger-ui/**",
+        //             		"/v3/api-docs/**"
+        //         		).permitAll()
+        //                 .requestMatchers("/api/**").authenticated()
+        //                 .requestMatchers("/users").denyAll()
+        //         )
+        //     .cors(cors -> {})
+        //         .build();
+        // //@formatter:on
     }
 }

@@ -31,15 +31,18 @@ public class JwtTokenProvider {
 	
 	@Value("${security.jwt.token.expire-length:3600000}")
 	private long validityInMilliseconds = 3600000; // 1h
+
+	Algorithm algorithm = null;
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
-	Algorithm algorithm = null;
+	
 	
 	@PostConstruct
 	protected void init() {
 		secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
+
 		algorithm = Algorithm.HMAC256(secretKey.getBytes());
 	}
 
@@ -114,8 +117,7 @@ public class JwtTokenProvider {
 	
 	public boolean validateToken(String token) {
 		DecodedJWT decodedJWT = decodedToken(token);
-		try 
-		{
+		try {
 			if (decodedJWT.getExpiresAt().before(new Date())) {
 				return false;
 			}

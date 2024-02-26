@@ -2,8 +2,6 @@ package com.daywid.Spring.Studies.integrationTest.vo;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-
 public class PersonVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

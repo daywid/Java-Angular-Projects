@@ -86,7 +86,7 @@ public class PersonController {
 		}
 	)
 	
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "http://localhost:8080")
 	public PersonVO findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
 	}
@@ -97,7 +97,7 @@ public class PersonController {
 	 * @param person The PersonVO to be created.
 	 * @return PersonVO representing the created person.
 	 */
-	@CrossOrigin(origins = {"http://localhost:8081","https://erudio.com.br"})
+	@CrossOrigin(origins = {"http://localhost:8080","https://erudio.com.br"})
 	@PostMapping(
 		consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  },
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  })
@@ -165,7 +165,7 @@ public class PersonController {
 		}
 	)
 	
-	@CrossOrigin(origins = "http://localhost:8081")
+	@CrossOrigin(origins = "http://localhost:8080")
 	public PersonVO disablePerson(@PathVariable(value = "id") Long id) {
 		return service.disablePerson(id);
 	}
