@@ -26,7 +26,7 @@ public class AuthController
     @Autowired
     AuthServices authServices;
     /*
-     * Authenticas a user and returns a token.
+     * Authenticates a user and returns a token.
      * 
      * @param data The user's account credentials.
      * @return ResponseEntity containing the token or an error message.
@@ -36,15 +36,13 @@ public class AuthController
     @PostMapping(value = "/signin")
     public ResponseEntity signin(@RequestBody AccountCredentialsVO data)
     {    
-        if(checkIfParamIsNotNull(data)) return ResponseEntity.status(HttpStatus.FORBIDDEN)
-        .body("Invalid client request!");
-        
+        if(checkIfParamIsNotNull(data)) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");        
         var token =  authServices.signIn(data);
-
-        if(token == null) return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");      
+        if (token == null) 
         {
-            return token;
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Invalid client request!");
         }
+        return token;
     }
     /*
      * Checks if the data parameter is null or empty.

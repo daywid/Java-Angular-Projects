@@ -2,6 +2,8 @@ package com.daywid.Spring.Studies.config;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,7 +27,6 @@ import com.daywid.Spring.Studies.security.Jwt.JwtTokenProvider;
 @Configuration
 public class SecurityConfig 
 {
-
     /**
 	 * Creates a password encoder bean.
 	 * 

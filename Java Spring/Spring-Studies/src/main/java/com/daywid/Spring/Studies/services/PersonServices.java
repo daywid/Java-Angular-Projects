@@ -16,6 +16,8 @@ import com.daywid.Spring.Studies.mapper.DozerMapper;
 import com.daywid.Spring.Studies.models.Person;
 import com.daywid.Spring.Studies.repositories.PersonRepository;
 
+import jakarta.transaction.Transactional;
+
 /*
  * This class represents the services for handling Person entities.
  */
@@ -108,4 +110,19 @@ public class PersonServices
 		.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 		repository.delete(entity);
 	}
+
+	@Transactional
+	public PersonVO disablePerson(Long id)
+	{	
+		logger.info("Disabling one person!");	
+
+		repository.disablePerson(id);
+		var entity = repository.findById(id)
+			.orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+		var vo = DozerMapper.parseObject(entity, PersonVO.class);
+		vo.add(linkTo(methodOn(PersonController.class).findById(id)).withSelfRel());
+		return vo;
+	}
+
+
 }

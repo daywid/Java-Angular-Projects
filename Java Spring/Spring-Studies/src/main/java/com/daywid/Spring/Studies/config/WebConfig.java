@@ -35,8 +35,6 @@ public class WebConfig implements WebMvcConfigurer{
 		.allowCredentials(true);
 	}
 
-
-
 	@Override
 	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
 		// https://www.baeldung.com/spring-mvc-content-negotiation-json-xml

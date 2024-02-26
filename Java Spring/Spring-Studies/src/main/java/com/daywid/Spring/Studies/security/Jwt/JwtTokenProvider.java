@@ -17,7 +17,6 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-
 import com.daywid.Spring.Studies.data.vo.v1.security.TokenVO;
 import com.daywid.Spring.Studies.exceptions.InvalidJwtAuthenticationException;
 
@@ -115,7 +114,8 @@ public class JwtTokenProvider {
 	
 	public boolean validateToken(String token) {
 		DecodedJWT decodedJWT = decodedToken(token);
-		try {
+		try 
+		{
 			if (decodedJWT.getExpiresAt().before(new Date())) {
 				return false;
 			}
