@@ -26,17 +26,16 @@ import jakarta.servlet.http.HttpServletRequest;
 @Service
 public class JwtTokenProvider {
 
-	@Value("${security.jwt.token.secret-key:secret}")
-	private String secretKey = "secret";
+	//@Value("${security.jwt.token.secret-key:secret}")
+	private String secretKey = "53cr37";
 	
-	@Value("${security.jwt.token.expire-length:3600000}")
+	//@Value("${security.jwt.token.expire-length:3600000}")
 	private long validityInMilliseconds = 3600000; // 1h
 
 	Algorithm algorithm = null;
 	
 	@Autowired
 	private UserDetailsService userDetailsService;
-	
 	
 	
 	@PostConstruct
@@ -105,6 +104,7 @@ public class JwtTokenProvider {
 		return decodedJWT;
 	}
 	
+	// bearer token null
 	public String resolveToken(HttpServletRequest req) {
 		String bearerToken = req.getHeader("Authorization");
 		
