@@ -3,12 +3,20 @@ package br.com.erudio.services;
 import java.util.List;
 import java.util.logging.Logger;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.PagedModel;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.stereotype.Service;
 
 import br.com.erudio.controllers.BookController;
+import br.com.erudio.controllers.BookController;
+import br.com.erudio.data.vo.v1.BookVO;
 import br.com.erudio.data.vo.v1.BookVO;
 import br.com.erudio.exceptions.RequiredObjectIsNullException;
 import br.com.erudio.exceptions.ResourceNotFoundException;
@@ -24,15 +32,28 @@ public class BookServices {
 	@Autowired
 	BookRepository repository;
 
-	public List<BookVO> findAll() {
+	@Autowired
+	PagedResourcesAssembler<BookVO> assembler;
+
+	public PagedModel<EntityModel<BookVO>> findAll(Pageable pageable) {
 
 		logger.info("Finding all book!");
 
-		var books = DozerMapper.parseListObjects(repository.findAll(), BookVO.class);
-		books
-			.stream()
-			.forEach(p -> p.add(linkTo(methodOn(BookController.class).findById(p.getKey())).withSelfRel()));
-		return books;
+		var bookPage = repository.findAll(pageable);
+
+		var bookVosPage = bookPage.map(p -> DozerMapper.parseObject(p, BookVO.class));
+		bookVosPage.map(
+			p -> p.add(
+				linkTo(methodOn(BookController.class)
+					.findById(p.getKey())).withSelfRel()));
+		
+		Link link = linkTo(
+			methodOn(BookController.class)
+				.findAll(pageable.getPageNumber(),
+						pageable.getPageSize(),
+						"asc")).withSelfRel();
+		
+		return assembler.toModel(bookVosPage, link);
 	}
 
 	public BookVO findById(Long id) {
