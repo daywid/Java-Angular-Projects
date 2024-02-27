@@ -2,7 +2,7 @@ package com.daywid.Spring.Studies.data.vo.v1;
 
 import java.io.Serializable;
 
-import org.dozer.Mapping;
+import com.github.dozermapper.core.Mapping;
 import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;

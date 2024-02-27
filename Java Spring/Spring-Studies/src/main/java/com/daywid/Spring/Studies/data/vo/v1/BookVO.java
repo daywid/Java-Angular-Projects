@@ -3,11 +3,11 @@ package com.daywid.Spring.Studies.data.vo.v1;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.dozer.Mapping;
 import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.github.dozermapper.core.Mapping;
 
 @JsonPropertyOrder({"id", "author", "launchDate", "price", "title"})
 public class BookVO extends RepresentationModel<BookVO> implements Serializable {
