@@ -16,50 +16,78 @@ import br.com.erudio.config.FileStorageConfig;
 import br.com.erudio.exceptions.FileStorageException;
 import br.com.erudio.exceptions.MyFileNotFoundException;
 
+/**
+ * Service for storing and loading files.
+ */
 @Service
 public class FileStorageService {
     
     private final Path fileStorageService;
 
 	@Autowired
-	public FileStorageService(FileStorageConfig fileStorageConfig) {
+	public FileStorageService(FileStorageConfig fileStorageConfig) 
+	{
 		Path path = Paths.get(fileStorageConfig.getUploadDir())
 			.toAbsolutePath().normalize();
 		
 		this.fileStorageService = path;
 		
-		try {
+		try 
+		{
 			Files.createDirectories(this.fileStorageService);
-		} catch (Exception e) {
-			throw new FileStorageException(
-				"Could not create the directory where the uploaded files will be stored!", e);
+		} 
+		catch (Exception e) 
+		{
+			throw new FileStorageException
+			(
+				"Could not create the directory where the uploaded files will be stored!", e
+			);
 		}
 	}
 	
-	public String storeFile(MultipartFile file) {
+	/**
+	 * Stores a file.
+	 * 
+	 * @param file the file to store
+	 * @return the filename
+	 */
+	public String storeFile(MultipartFile file) 
+	{
 		String filename = StringUtils.cleanPath(file.getOriginalFilename());
-		try {
+		try 
+		{
 			// Filename..txt
-			if (filename.contains("..")) {
-				throw new FileStorageException(
-					"Sorry! Filename contains invalid path sequence " + filename);
+			if (filename.contains("..")) 
+			{
+				throw new FileStorageException("Sorry! Filename contains invalid path sequence " + filename);
 			}
 			Path targetLocation = this.fileStorageService.resolve(filename);
 			Files.copy(file.getInputStream(), targetLocation, StandardCopyOption.REPLACE_EXISTING);
 			return filename;
-		} catch (Exception e) {
-			throw new FileStorageException(
-				"Could not store file " + filename + ". Please try again!", e);
+		} 
+		catch (Exception e) 
+		{
+			throw new FileStorageException("Could not store file " + filename + ". Please try again!", e);
 		}
 	}
 	
-	public Resource loadFileAsResource(String filename) {
-		try {
+	/**
+	 * Loads a file as a resource.
+	 * 
+	 * @param filename the name of the file to load
+	 * @return the resource representing the file
+	 */
+	public Resource loadFileAsResource(String filename) 
+	{
+		try 
+		{
 			Path filePath = this.fileStorageService.resolve(filename).normalize();
 			Resource resource = new UrlResource(filePath.toUri());
 			if (resource.exists()) return resource;
 			else throw new MyFileNotFoundException("File not found");
-		} catch (Exception e) {
+		} 
+		catch (Exception e) 
+		{
 			throw new MyFileNotFoundException("File not found" + filename, e);
 		}
 	}
