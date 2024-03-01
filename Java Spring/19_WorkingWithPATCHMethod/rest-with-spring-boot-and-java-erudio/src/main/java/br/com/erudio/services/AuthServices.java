@@ -13,6 +13,9 @@ import br.com.erudio.data.vo.v1.security.TokenVO;
 import br.com.erudio.repositories.UserRepository;
 import br.com.erudio.security.jwt.JwtTokenProvider;
 
+/*
+ * Service class for authentication operations
+ */
 @Service
 public class AuthServices {
 
@@ -25,6 +28,12 @@ public class AuthServices {
 	@Autowired
 	private UserRepository repository;
 	
+	/*
+	 * Authenticates a user and returns an access token.
+	 * 
+	 * @param data The user's account credentials.
+	 * @return ResponseEntity with the access token.
+	 */
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity signin(AccountCredentialsVO data) {
 		try {
@@ -46,7 +55,14 @@ public class AuthServices {
 			throw new BadCredentialsException("Invalid username/password supplied!");
 		}
 	}
-	
+	/*
+	 * Refreshes the access token for a user.
+	 * 
+	 * @param username The username of the user.
+	 * @param refreshtoken The refresh token.
+	 * @return ResponseEntity containing the new access token.
+	 * 
+	 */
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity refreshToken(String username, String refreshToken) {
 		var user = repository.findByUsername(username);

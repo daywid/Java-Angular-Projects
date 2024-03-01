@@ -1,5 +1,7 @@
 package br.com.erudio.util;
-
+/**
+ * This class provides constants for media types.
+ */
 public class MediaType {
 	
 	public static final String APPLICATION_JSON = "application/json";

@@ -38,6 +38,15 @@ public class PersonController {
 	@Autowired
 	private PersonServices service;
 	
+	/*
+	 * Retrieves all people with pagination and sorting options
+	 * 
+	 * @param page page number
+	 * @param limit number of items per page
+	 * @param direction sorting direction
+	 * @return ResponseEntity containing a paginated list of people
+	 */
+	
 	@GetMapping(
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
 	@Operation(summary = "Finds all People", description = "Finds all People",
@@ -69,6 +78,15 @@ public class PersonController {
 		return ResponseEntity.ok(service.findAll(pageable));
 	}
 
+	/*
+	 * Retrieves people by first name with pagination and sorting options
+	 * 
+	 * @param firstName first name to search for
+	 * @param page page number
+	 * @param limit number of items per page
+	 * @param direction sorting direction
+	 * @return ResponseEntity containing a paginated list of people matching the first name
+	 */
 	@GetMapping(
 		value = "/findPersonByName/{firstName}",
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML })
@@ -103,7 +121,12 @@ public class PersonController {
 	}
 
 
-
+	/*
+	 * Retrieves a person by id
+	 * 
+	 * @param id id of the person
+	 * @return the person with the given id
+	 */
 	@CrossOrigin(origins = "http://localhost:8080")
 	@GetMapping(value = "/{id}",
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  })
@@ -124,6 +147,12 @@ public class PersonController {
 		return service.findById(id);
 	}
 
+	/*
+	 * Adds a new person
+	 * 
+	 * @param person person to be added
+	 * @return the added person
+	 */
 	@CrossOrigin(origins = {"http://localhost:8080", "https://erudio.com.br"})
 	@PostMapping(
 		consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  },
@@ -144,6 +173,12 @@ public class PersonController {
 		return service.create(person);
 	}
 	
+	/*
+	 * Updates a person
+	 * 
+	 * @param person person to be updated
+	 * @return the updated person
+	 */
 	@PutMapping(
 		consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  },
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  })
@@ -164,6 +199,12 @@ public class PersonController {
 		return service.update(person);
 	}
 	
+	/*
+	 * Disables a specific person by ID.
+	 * 
+	 * @param id the ID of the person to disable
+	 * @return the disabled person
+	 */
 	@PatchMapping(value = "/{id}",
 		produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML, MediaType.APPLICATION_YML  })
 	@Operation(summary = "Disable a specific Person by your ID", description = "Disable a specific Person by your ID",
@@ -183,6 +224,12 @@ public class PersonController {
 		return service.disablePerson(id);
 	}
 	
+	/**
+	 * Deletes a Person
+	 *
+	 * @param id the ID of the Person
+	 * @return no content
+	 */
 	@DeleteMapping(value = "/{id}")
 	@Operation(summary = "Deletes a Person",
 		description = "Deletes a Person by passing in a JSON, XML or YML representation of the person!",

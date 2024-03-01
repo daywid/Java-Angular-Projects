@@ -22,6 +22,11 @@ public class UserServices implements UserDetailsService {
 		this.repository = repository;
 	}
 
+	/*
+	 * Constructs a new UserServices with the specified repository.
+	 * 
+	 * @param repository the user repository
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		logger.info("Finding one user by name " + username + "!");

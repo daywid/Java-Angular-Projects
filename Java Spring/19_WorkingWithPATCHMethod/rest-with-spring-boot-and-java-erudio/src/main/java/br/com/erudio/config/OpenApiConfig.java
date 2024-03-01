@@ -6,10 +6,15 @@ import org.springframework.context.annotation.Configuration;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
-
+/*
+ * Configuration class for OpenAPI documentation.
+ */
 @Configuration
 public class OpenApiConfig {
 	
+	/*
+	 * Sets custom OpenAPI configuration.
+	 */
 	@Bean
 	OpenAPI customOpenAPI() {
 		return new OpenAPI()

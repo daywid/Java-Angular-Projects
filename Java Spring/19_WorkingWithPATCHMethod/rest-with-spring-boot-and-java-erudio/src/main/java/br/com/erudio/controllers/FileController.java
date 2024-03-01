@@ -23,7 +23,9 @@ import br.com.erudio.data.vo.v1.UploadFileResponseVO;
 import br.com.erudio.services.FileStorageService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
-
+/*
+ * Controller for handling file upload and download operations
+ */
 @Tag(name = "File Endpoint")
 @RestController
 @RequestMapping("/api/file/v1")
@@ -33,7 +35,11 @@ public class FileController
 
     @Autowired
     private FileStorageService service;
-
+    /*
+     * Endpoint for uploading a single file
+     * @param file the file to be uploaded
+     * @return UploadFileResponseVO containing file detais
+     */
     @PostMapping("/uploadFile")
     public UploadFileResponseVO uploadFile(@RequestParam("file") MultipartFile file)
     {
@@ -46,7 +52,11 @@ public class FileController
                 .toUriString();
         return new UploadFileResponseVO(filename, fileDownloadUri, file.getContentType(), file.getSize());
     }
-
+    /*
+     * Endpoint for uploading multiple files
+     * @param files the files to be uploaded
+     * @return List<UploadFileResponseVO> containing file detais
+     */
    @PostMapping("/uploadMultipleFiles")
     public List<UploadFileResponseVO> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files)
     {
@@ -57,17 +67,19 @@ public class FileController
                 .map(file -> uploadFile(file))
                 .collect(Collectors.toList());
     }
-
-
+    /*
+     * Endpoint for downloading a file
+     * @param fileName the name of the file to be downloaded
+     * @param request the HTTP request
+     * @return Resource representing the file
+     */
     @GetMapping("/downloadFile/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request)
     {
         logger.info("Retrieving file from disk");
 
         Resource resource = service.loadFileAsResource(fileName);
-
         String contentType = "";
-
         try 
         {
             contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
@@ -76,13 +88,10 @@ public class FileController
         {
             logger.info("Could not determine file type");
         }
-
         if(contentType.isBlank())
         {
             contentType = "application/octet-stream";
         }
-
-       
         return ResponseEntity.ok()
             .contentType(MediaType.parseMediaType(contentType))
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")

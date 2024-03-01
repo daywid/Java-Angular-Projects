@@ -24,6 +24,9 @@ import br.com.erudio.mapper.DozerMapper;
 import br.com.erudio.model.Book;
 import br.com.erudio.repositories.BookRepository;
 
+/*
+ * Service class for managing books
+ */
 @Service
 public class BookServices {
 	
@@ -35,6 +38,12 @@ public class BookServices {
 	@Autowired
 	PagedResourcesAssembler<BookVO> assembler;
 
+	/*
+	 * Find all books with paging support.
+	 * 
+	 * @param pageable the pageable object
+	 * @return PagedModel of EntityModel of BookVO
+	 */
 	public PagedModel<EntityModel<BookVO>> findAll(Pageable pageable) {
 
 		logger.info("Finding all book!");
@@ -56,6 +65,12 @@ public class BookServices {
 		return assembler.toModel(bookVosPage, link);
 	}
 
+	/*
+	 * Find one book by id
+	 * 
+	 * @param id the ID of the book
+	 * @return the BookVO object
+	 */
 	public BookVO findById(Long id) {
 		
 		logger.info("Finding one book!");
@@ -67,6 +82,12 @@ public class BookServices {
 		return vo;
 	}
 	
+	/*
+	 * Create a new book
+	 * 
+	 * @param book the bookVO object to be created
+	 * @return the created BookVO object
+	 */
 	public BookVO create(BookVO book) {
 
 		if (book == null) throw new RequiredObjectIsNullException();
@@ -77,7 +98,12 @@ public class BookServices {
 		vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel());
 		return vo;
 	}
-	
+	/*
+	 * Update a book.
+	 * 
+	 * @param book the BookVO object to update
+	 * @return the updated BookVO object
+	 */
 	public BookVO update(BookVO book) {
 
 		if (book == null) throw new RequiredObjectIsNullException();
@@ -96,7 +122,11 @@ public class BookServices {
 		vo.add(linkTo(methodOn(BookController.class).findById(vo.getKey())).withSelfRel());
 		return vo;
 	}
-	
+	/*
+	 * Delete a book by ID
+	 * 
+	 * @param the id of the book to be deleted
+	 */
 	public void delete(Long id) {
 		
 		logger.info("Deleting one book!");

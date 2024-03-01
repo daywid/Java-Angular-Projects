@@ -16,6 +16,10 @@ import br.com.erudio.services.AuthServices;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+/*
+ * Controller for authentication operations
+ */
+
 @Tag(name = "Authentication Endpoint")
 @RestController
 @RequestMapping("/auth")
@@ -24,6 +28,9 @@ public class AuthController {
 	@Autowired
 	AuthServices authServices;
 	
+	/*
+	 * Authenticates a user and returns a token
+	 */
 	@SuppressWarnings("rawtypes")
 	@Operation(summary = "Authenticates a user and returns a token")
 	@PostMapping(value = "/signin")
@@ -35,6 +42,9 @@ public class AuthController {
 		return token;
 	}
 	
+	/*
+	 * Refresh token for authenticated user and returns a token
+	 */
 	@SuppressWarnings("rawtypes")
 	@Operation(summary = "Refresh token for authenticated user and returns a token")
 	@PutMapping(value = "/refresh/{username}")
@@ -47,6 +57,14 @@ public class AuthController {
 		return token;
 	}
 
+	/*
+	 * Checks if the parameters are not null or blank
+	 * 
+	 * @param username		the username to check
+	 * @param refreshToken	the refresh token to check
+	 * @return 				true if the parameters are not null or blank, false otherwise
+	 * 
+	 */
 	private boolean checkIfParamsIsNotNull(String username, String refreshToken) {
 		return refreshToken == null || refreshToken.isBlank() ||
 				username == null || username.isBlank();
