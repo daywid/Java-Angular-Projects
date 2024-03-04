@@ -2,8 +2,8 @@ version: '3.9'
 services:
   db:
     image: mysql:8.0.29
-    command: mysql --default-authentication-plugin=mysql_native_password
-    restart: always
+    # command: mysql --default-authentication-plugin=mysql_native_password
+    restart: on-failure
     environment:
       TZ: America/Sao_Paulo
       MYSQL_ROOT_PASSWORD: root
@@ -20,7 +20,7 @@ services:
       - erudio-network
   rest-with-spring-boot-and-java-erudio:
     image: daywid/rest-with-spring-boot-erudio
-    restart: always
+    restart: on-failure
     build: ./rest-with-spring-boot-and-java-erudio
     working_dir: /rest-with-spring-boot-and-java-erudio
     # working_dir: /Documents/GitHub/Angular-Projects/Java Spring/19_WorkingWithPATCHMethod/rest-with-spring-boot-and-java-erudio
